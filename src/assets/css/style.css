@@ -29,6 +29,7 @@ body {
   margin: 0;
   font-family: "Arimo", "Hind Siliguri";
   font-size: 2rem;
+  line-height: 1.2;
 }
 
 /**
@@ -228,6 +229,7 @@ button:-moz-focusring,
  * Correct the padding in Firefox.
  */
 fieldset {
+  display: flex;
   padding: 0.35em 0.75em 0.625em;
 }
 
@@ -621,7 +623,7 @@ h1 {
 .btn_actions_personne {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 .btn_actions_personne .btn_actions_delete,
 .btn_actions_personne .btn_actions_update,
@@ -652,7 +654,7 @@ h1 {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 5rem;
-  margin: 4rem 0 0 0;
+  margin: 1.5rem 0 0 0;
 }
 .btn_actions_reseau .btn_actions_delete,
 .btn_actions_reseau .btn_actions_update,
@@ -682,7 +684,7 @@ h1 {
 .btn_actions_hobbie {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 5rem;
+  margin: 1rem 0;
 }
 .btn_actions_hobbie .btn_actions_delete,
 .btn_actions_hobbie .btn_actions_update,
@@ -770,7 +772,6 @@ main.personne_main .infos_me ul .move {
 }
 .personne_hobbie h2 {
   text-align: center;
-  margin: 5rem 0 3rem 0;
   margin: 3rem 0 3rem 0;
 }
 .personne_hobbie p {
@@ -784,7 +785,7 @@ footer.personne_footer {
 }
 footer.personne_footer h2 {
   text-align: center;
-  margin: 5rem 0 3rem 0;
+  margin: 3rem 0 3rem 0;
 }
 footer.personne_footer img {
   max-width: 5rem;
@@ -804,7 +805,7 @@ footer.personne_footer li:last-child {
 .btn_actions_poste {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   margin-top: 2rem;
 }
 .btn_actions_poste .btn_actions_delete,
@@ -835,7 +836,6 @@ footer.personne_footer li:last-child {
 .btn_actions_experiencePro {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 3rem;
   margin-top: 2rem;
 }
 .btn_actions_experiencePro .btn_actions_delete,
@@ -897,7 +897,7 @@ footer.personne_footer li:last-child {
 .btn_actions_footer {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 .btn_actions_footer .btn_actions_delete,
 .btn_actions_footer .btn_actions_update,
@@ -925,7 +925,7 @@ footer.personne_footer li:last-child {
 }
 
 header.poste_header {
-  margin: 5rem 0 2rem 0;
+  margin: 3rem 0 2rem 0;
 }
 header.poste_header h2.title_poste {
   font-family: "Oswald";
@@ -1274,14 +1274,11 @@ h2.formations_title {
 
 .form {
   margin: 2rem;
+  display: flex;
 }
 
 .form_lab {
   margin-right: 2rem;
-}
-
-.favorite {
-  margin: 2rem 30rem;
 }
 
 .styled,
@@ -1316,9 +1313,9 @@ h2.formations_title {
     inset 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 
-.favorite1 {
+/* .favorite1 {
   margin: 7rem;
-}
+} */
 
 .styled1 {
   padding: 0 2rem;

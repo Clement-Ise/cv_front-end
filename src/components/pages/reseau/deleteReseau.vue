@@ -7,50 +7,6 @@
           alt="polices-gothiques"
         />
         <h1>| Curriculum Vitae - Make Application Great Again</h1>
-        <div class="btn_actions_reseau">
-          <div class="btn_actions_add" title="Ajouter le reseau">
-            <router-link to="/create">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div class="btn_actions_update" title="Modifier la reseau">
-            <router-link to="/updateReseau">
-              <i class="fa fa-edit fa-lg faPave"></i>
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="navigation">
-        <div class="nav_menu_crud">
-          <nav class="navla">
-            <ul class="nav">
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Personne">Personne</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Reseaux"> Reseaux</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Hobbies">Hobbies</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Poste">Poste</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Experience_pro">Expériences Pro</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Outils">Outils</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Formations">Formations</a>
-              </li>
-              <li class="menu_prhpeofc cv">
-                <a href="../index.html">See Your CV</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
     </header>
     <main class="app-main">
@@ -58,73 +14,65 @@
         <section class="card card-marketing">
           <div class="media">
             <div class="media_body">
-              <h2 class="media_title">Supprimer vos réseaux</h2>
+              <h2 class="media_title">
+                Êtes-vous sur de vouloir supprimer le réseaux ?
+              </h2>
               <div class="reseau">
-                <form class="reseau_delete" action="#" method="post">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="delete"
-                      name="deleteChoice1"
-                      checked
-                    />
-                  </div>
-                  <div>
-                    <ul>
-                      <li class="form">Identifiant : Exemple-ex</li>
-                      <li class="form">Url : https://www.exemple.com</li>
-                    </ul>
-                  </div>
-                  <div class="col-5">
-                    <img
-                      src="#"
-                      id="previewImage"
-                      class="img-responsive"
-                      alt="image du Réseau"
-                    />
-                  </div>
-                </form>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="587.003"
-                  height="3"
-                  viewBox="0 0 587.003 3"
+                <form
+                  class="media_formulaire"
+                  method="POST"
+                  @submit.prevent="submit"
                 >
-                  <line
-                    id="Ligne_20"
-                    data-name="Ligne 20"
-                    x2="587"
-                    y2="2"
-                    transform="translate(0.002 0.5)"
-                    fill="none"
-                    stroke="#707070"
-                    stroke-width="1"
-                  />
-                </svg>
-                <div>
-                  <input
-                    class="favorite1 styled1"
-                    type="button"
-                    value="Annuler"
-                  />
-                  <input
-                    class="favorite1 styled1"
-                    type="button"
-                    value="Supprimer la selection"
-                  />
-                </div>
-                <div class="delete_popup_res">
-                  <h2 class="delete_title">
-                    Êtes-vous sur de vouloir supprimer la sélection ?
-                  </h2>
-                  <a href="../index.html">
-                    <input
-                      class="favorite1 styled1"
-                      type="submit"
-                      value="Supprimer définitivement"
+                  <div>
+                    <div class="form">
+                      <label class="form_lab" for="nom">Identifiant :</label>
+                      <input
+                        type="text"
+                        id="nom"
+                        name="nom"
+                        placeholder="Exemple-ex"
+                        v-model="reseau.nom"
+                        required
+                      />
+                    </div>
+                    <div class="form">
+                      <label class="form_lab" for="lien">Url :</label>
+                      <input
+                        type="text"
+                        id="lien"
+                        name="lien"
+                        placeholder="https://www.exemple.com/"
+                        v-model="reseau.lien"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="587.003"
+                    height="3"
+                    viewBox="0 0 587.003 3"
+                  >
+                    <line
+                      id="Ligne_20"
+                      data-name="Ligne 20"
+                      x2="587"
+                      y2="2"
+                      transform="translate(0.002 0.5)"
+                      fill="none"
+                      stroke="#707070"
+                      stroke-width="1"
                     />
-                  </a>
-                </div>
+                  </svg>
+                  <fieldset>
+                    <button class="favorite1 styled1" type="submit">
+                      Annuler
+                    </button>
+                    <button class="favorite1 styled1" type="submit">
+                      Supprimer la selection
+                    </button>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
@@ -132,11 +80,55 @@
       </div>
     </main>
     <footer class="app-footer">
-      <p class="footer_cop">© Clément ISELIN <span id="year"> </span></p>
+      <p class="footer_cop">Clément ISELIN &copy; 2021</p>
     </footer>
   </div>
 </template>
 <script>
-export default {};
+import app from "@/services/app";
+
+export default {
+  name: "DeleteReseau",
+  data() {
+    return {
+      reseau: {
+        id: 0,
+        nom: null,
+        lien: null
+      }
+    };
+  },
+  created() {
+    // get id reseau via route
+    this.reseau.id = this.$route.params.id;
+    // Object FormData to set parameters
+    let params = new FormData();
+    params.append("id", this.reseau.id);
+    app
+      .get("getReseau", params)
+      .then(promise => {
+        this.reseau = promise;
+      })
+      .catch(error => console.log(error));
+  },
+  methods: {
+    submit: function() {
+      // Object FormData to set parameters
+      let params = new FormData();
+      params.append("id", this.reseau.id);
+      params.append("nom", this.reseau.nom);
+      params.append("lien", this.reseau.lien);
+      // Call Ajax service
+      app
+        .maj("deleteReseau", params)
+        .then(promise => {
+          this.reseau = promise;
+          // Redirect to admin page
+          this.$router.push("/admin");
+        })
+        .catch(error => console.log(error));
+    }
+  }
+};
 </script>
 <style scoped></style>

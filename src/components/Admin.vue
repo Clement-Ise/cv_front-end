@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div class="container_cv" v-for="liste in liste" :key="liste.id">
+    <div class="container_cv" v-for="personne in liste" :key="personne.id">
       <div class="left_parter">
         <div class="btn_actions_personne">
-          <div class="btn_actions_delete" title="Supprimer la personne">
-            <router-link to="/dPersonne">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div class="btn_actions_update" title="Modifier la personne">
-            <router-link to="/uPersonne">
-              <i class=" fa fa-edit fa-lg faPave"></i>
+          <div class="btn_actions_update" title="Modifier la personne ">
+            <router-link
+              :to="{
+                name: 'UpdatePersonne',
+                params: { id: 1 }
+              }"
+            >
+              <i class="fa fa-edit fa-lg faPave"></i>
             </router-link>
           </div>
         </div>
         <header class="personne_header">
-          <h1>{{ liste.prenom }} {{ liste.nom }}</h1>
-          <h2>{{ liste.qualification }}</h2>
+          <h1>{{ personne.prenom }} {{ personne.nom }}</h1>
+          <h2>{{ personne.qualification }}</h2>
         </header>
         <main class="personne_main">
           <h2>Contactez-moi</h2>
@@ -24,14 +24,16 @@
             <div>
               <ul>
                 <li>Adresse:</li>
-                <li>{{ liste.adresse }}, {{ liste.cp }} {{ liste.ville }}</li>
+                <li>
+                  {{ personne.adresse }}, {{ personne.cp }} {{ personne.ville }}
+                </li>
               </ul>
             </div>
             <div>
               <ul>
                 <li>Mobile:</li>
                 <li>
-                  <a href="tel:+33688502789">{{ liste.telephone }}</a>
+                  <a href="tel:+33688502789">{{ personne.telephone }}</a>
                 </li>
               </ul>
             </div>
@@ -39,17 +41,21 @@
               <ul>
                 <li>Mail:</li>
                 <li>
-                  <a href="mailto:clement.iselin@gmail.com">{{ liste.mail }}</a>
+                  <a href="mailto:clement.iselin@gmail.com">{{
+                    personne.mail
+                  }}</a>
                 </li>
               </ul>
             </div>
             <ul>
-              <li class="move">{{ liste.permis }} et {{ liste.voiture }}</li>
+              <li class="move">
+                {{ personne.permis }} et {{ personne.voiture }}
+              </li>
             </ul>
           </div>
         </main>
         <div class="btn_actions_reseau">
-          <div class="btn_actions_add" title="Ajouter le reseau">
+          <div class="btn_actions_add" title="Ajouter un reseau">
             <router-link to="/cReseau">
               <i class="fa fa-times fa-lg faPave"></i>
             </router-link>
@@ -59,16 +65,21 @@
           <h2>Me trouver</h2>
           <ul
             id="listerese"
-            v-for="reseau in liste.lesReseaux"
+            v-for="reseau in personne.lesReseaux"
             :key="reseau.id"
           >
             <div class="btn_actions_reseau">
               <div class="btn_actions_delete" title="Supprimer le reseau">
-                <router-link to="/dReseau">
+                <router-link
+                  :to="{
+                    name: 'DeleteReseau',
+                    params: { id: reseau.id }
+                  }"
+                >
                   <i class="fa fa-times fa-lg faPave"></i>
                 </router-link>
               </div>
-              <div class="btn_actions_update" title="Modifier la reseau">
+              <div class="btn_actions_update" title="Modifier le reseau">
                 <router-link
                   :to="{
                     name: 'UpdateReseau',
@@ -85,7 +96,7 @@
           </ul>
         </footer>
         <div class="btn_actions_hobbie">
-          <div class="btn_actions_add" title="Ajouter le hobbie">
+          <div class="btn_actions_add" title="Ajouter un hobbie">
             <router-link to="/cHobbie">
               <i class="fa fa-times fa-lg faPave"></i>
             </router-link>
@@ -96,7 +107,7 @@
           <div>
             <div
               id="listehobb"
-              v-for="hobbie in liste.lesHobbies"
+              v-for="hobbie in personne.lesHobbies"
               :key="hobbie.id"
             >
               <div class="btn_actions_hobbie">
@@ -110,6 +121,16 @@
                     <i class="fa fa-edit fa-lg faPave"></i>
                   </router-link>
                 </div>
+                <div class="btn_actions_delete" title="Supprimer le hobbie">
+                  <router-link
+                    :to="{
+                      name: 'DeleteHobbie',
+                      params: { id: hobbie.id }
+                    }"
+                  >
+                    <i class="fa fa-times fa-lg faPave"></i>
+                  </router-link>
+                </div>
               </div>
               <h3>{{ hobbie.nom }}</h3>
               <p>
@@ -121,13 +142,8 @@
       </div>
       <div class="main_parter">
         <div class="btn_actions_poste">
-          <div class="btn_actions_add" title="Ajouter le poste">
+          <div class="btn_actions_add" title="Ajouter un poste">
             <router-link to="/cPoste">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div class="btn_actions_delete" title="Supprimer le poste">
-            <router-link to="/dPoste">
               <i class="fa fa-times fa-lg faPave"></i>
             </router-link>
           </div>
@@ -135,7 +151,7 @@
         <header
           class="poste_header"
           id="listepost"
-          v-for="poste in liste.lesPostes"
+          v-for="poste in personne.lesPostes"
           :key="poste.id"
         >
           <div class="btn_actions_poste">
@@ -147,6 +163,16 @@
                 }"
               >
                 <i class="fa fa-edit fa-lg faPave"></i>
+              </router-link>
+            </div>
+            <div class="btn_actions_delete" title="Supprimer le poste">
+              <router-link
+                :to="{
+                  name: 'DeletePoste',
+                  params: { id: poste.id }
+                }"
+              >
+                <i class="fa fa-times fa-lg faPave"></i>
               </router-link>
             </div>
           </div>
@@ -202,17 +228,9 @@
         <div class="btn_actions_experiencePro">
           <div
             class="btn_actions_add"
-            title="Ajouter les experiences de la personne"
+            title="Ajouter une experience professionnelle"
           >
             <router-link to="/cExperiencePro">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div
-            class="btn_actions_delete"
-            title="Supprimer les experiences de la personne"
-          >
-            <router-link to="/dExperiencePro">
               <i class="fa fa-times fa-lg faPave"></i>
             </router-link>
           </div>
@@ -223,13 +241,13 @@
           </h2>
           <article
             id="listeexpe"
-            v-for="experience in liste.lesExperiencesPros"
+            v-for="experience in personne.lesExperiencesPros"
             :key="experience.id"
           >
             <div class="btn_actions_experiencePro">
               <div
                 class="btn_actions_update"
-                title="Modifier les experiences de la personne"
+                title="Modifier l'experience professionnelle"
               >
                 <router-link
                   :to="{
@@ -238,6 +256,19 @@
                   }"
                 >
                   <i class="fa fa-edit fa-lg faPave"></i>
+                </router-link>
+              </div>
+              <div
+                class="btn_actions_delete"
+                title="Supprimer l'experience professionnelle"
+              >
+                <router-link
+                  :to="{
+                    name: 'DeleteExperiencePro',
+                    params: { id: experience.id }
+                  }"
+                >
+                  <i class="fa fa-times fa-lg faPave"></i>
                 </router-link>
               </div>
             </div>
@@ -284,16 +315,8 @@
           </article>
         </section>
         <div class="btn_actions_outils">
-          <div class="btn_actions_add" title="Ajouter l'outil de la personne">
+          <div class="btn_actions_add" title="Ajouter un outil">
             <router-link to="/cOutil">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div
-            class="btn_actions_delete"
-            title="Supprimer l'outil de la personne"
-          >
-            <router-link to="/dOutil">
               <i class="fa fa-times fa-lg faPave"></i>
             </router-link>
           </div>
@@ -306,14 +329,11 @@
                 <h4>Développement:</h4>
                 <ul
                   id="listeCompe"
-                  v-for="outil in liste.lesOutils"
+                  v-for="outil in personne.lesOutils"
                   :key="outil.id"
                 >
                   <div class="btn_actions_outils">
-                    <div
-                      class="btn_actions_update"
-                      title="Modifier les experiences de la personne"
-                    >
+                    <div class="btn_actions_update" title="Modifier l'outil">
                       <router-link
                         :to="{
                           name: 'UpdateOutil',
@@ -321,6 +341,16 @@
                         }"
                       >
                         <i class="fa fa-edit fa-lg faPave"></i>
+                      </router-link>
+                    </div>
+                    <div class="btn_actions_delete" title="Supprimer l'outil">
+                      <router-link
+                        :to="{
+                          name: 'DeleteOutil',
+                          params: { id: outil.id }
+                        }"
+                      >
+                        <i class="fa fa-times fa-lg faPave"></i>
                       </router-link>
                     </div>
                   </div>
@@ -333,19 +363,8 @@
           </div>
         </section>
         <div class="btn_actions_footer">
-          <div
-            class="btn_actions_add"
-            title="Ajouter la formation de la personne"
-          >
+          <div class="btn_actions_add" title="Ajouter une formation">
             <router-link to="/cFormation">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div
-            class="btn_actions_delete"
-            title="Supprimer la formation de la personne"
-          >
-            <router-link to="/dFormation">
               <i class="fa fa-times fa-lg faPave"></i>
             </router-link>
           </div>
@@ -355,14 +374,11 @@
           <div class="formations_footer">
             <ul
               id="listeForma"
-              v-for="formation in liste.lesFormations"
+              v-for="formation in personne.lesFormations"
               :key="formation.id"
             >
               <div class="btn_actions_footer">
-                <div
-                  class="btn_actions_update"
-                  title="Modifier les experiences de la personne"
-                >
+                <div class="btn_actions_update" title="Modifier la formation">
                   <router-link
                     :to="{
                       name: 'UpdateFormation',
@@ -372,12 +388,21 @@
                     <i class="fa fa-edit fa-lg faPave"></i>
                   </router-link>
                 </div>
+                <div class="btn_actions_delete" title="Supprimer la Formation">
+                  <router-link
+                    :to="{
+                      name: 'DeleteFormation',
+                      params: { id: formation.id }
+                    }"
+                  >
+                    <i class="fa fa-times fa-lg faPave"></i>
+                  </router-link>
+                </div>
               </div>
-              <li>{{ formation.annee }}</li>
-              <li class="separator">-</li>
-              <li>{{ formation.etablissement }}</li>
-              <li class="separator">|</li>
-              <li>{{ formation.nom }}</li>
+              <li>
+                {{ formation.annee }} - {{ formation.etablissement }} |
+                {{ formation.nom }}
+              </li>
             </ul>
           </div>
         </footer>

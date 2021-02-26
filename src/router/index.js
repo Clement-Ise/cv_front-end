@@ -8,31 +8,37 @@ import Accueil from "@/components/Accueil";
 import Admin from "@/components/Admin";
 
 // //Personne
-// import UpdatePersonne from "@/components/pages/personne/UpdatePersonne";
+import UpdatePersonne from "@/components/pages/personne/UpdatePersonne";
 
 //Reseau
 import CreateReseau from "@/components/pages/reseau/CreateReseau";
 import UpdateReseau from "@/components/pages/reseau/UpdateReseau";
+import DeleteReseau from "@/components/pages/reseau/DeleteReseau";
 
 //Hobbie
 import CreateHobbie from "@/components/pages/hobbie/CreateHobbie";
 import UpdateHobbie from "@/components/pages/hobbie/UpdateHobbie";
+import DeleteHobbie from "@/components/pages/hobbie/DeleteHobbie";
 
 //Poste
 import CreatePoste from "@/components/pages/poste/CreatePoste";
 import UpdatePoste from "@/components/pages/poste/UpdatePoste";
+import DeletePoste from "@/components/pages/poste/DeletePoste";
 
 //Experience_pro
 import CreateExperiencePro from "@/components/pages/experience_pro/CreateExperiencePro";
 import UpdateExperiencePro from "@/components/pages/experience_pro/UpdateExperiencePro";
+import DeleteExperiencePro from "@/components/pages/experience_pro/DeleteExperiencePro";
 
 //Outil
 import CreateOutil from "@/components/pages/outil/CreateOutil";
 import UpdateOutil from "@/components/pages/outil/UpdateOutil";
+import DeleteOutil from "@/components/pages/outil/DeleteOutil";
 
 //Formation
 import CreateFormation from "@/components/pages/formation/CreateFormation";
 import UpdateFormation from "@/components/pages/formation/UpdateFormation";
+import DeleteFormation from "@/components/pages/formation/DeleteFormation";
 
 Vue.use(Router);
 
@@ -51,11 +57,11 @@ export default new Router({
       component: Admin
     },
     // //Personne
-    // {
-    //   path: "/uPersonne",
-    //   name: "UpdatePersonne",
-    //   component: UpdatePersonne
-    // },
+    {
+      path: "/uPersonne",
+      name: "UpdatePersonne",
+      component: UpdatePersonne
+    },
     //Reseau
     {
       path: "/cReseau",
@@ -63,9 +69,14 @@ export default new Router({
       component: CreateReseau
     },
     {
-      path: "/uReseau/:id",
+      path: "/uReseau/",
       name: "UpdateReseau",
       component: UpdateReseau
+    },
+    {
+      path: "/dReseau/",
+      name: "DeleteReseau",
+      component: DeleteReseau
     },
     //Hobbie
     {
@@ -78,6 +89,11 @@ export default new Router({
       name: "UpdateHobbie",
       component: UpdateHobbie
     },
+    {
+      path: "/dHobbie",
+      name: "DeleteHobbie",
+      component: DeleteHobbie
+    },
     //Poste
     {
       path: "/cPoste",
@@ -88,6 +104,11 @@ export default new Router({
       path: "/uPoste",
       name: "UpdatePoste",
       component: UpdatePoste
+    },
+    {
+      path: "/dPoste",
+      name: "DeletePoste",
+      component: DeletePoste
     },
     //Experience Pro
     {
@@ -100,6 +121,11 @@ export default new Router({
       name: "UpdateExperiencePro",
       component: UpdateExperiencePro
     },
+    {
+      path: "/dExperiencePro",
+      name: "DeleteExperiencePro",
+      component: DeleteExperiencePro
+    },
     //Outil
     {
       path: "/cOutil",
@@ -111,6 +137,11 @@ export default new Router({
       name: "UpdateOutil",
       component: UpdateOutil
     },
+    {
+      path: "/dOutil",
+      name: "DeleteOutil",
+      component: DeleteOutil
+    },
     //Formation
     {
       path: "/cFormation",
@@ -121,6 +152,11 @@ export default new Router({
       path: "/uFormation",
       name: "UpdateFormation",
       component: UpdateFormation
+    },
+    {
+      path: "/dFormation",
+      name: "DeleteFormation",
+      component: DeleteFormation
     }
   ]
 });

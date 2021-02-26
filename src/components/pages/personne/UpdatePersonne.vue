@@ -7,45 +7,6 @@
           alt="polices-gothiques"
         />
         <h1>| Curriculum Vitae - Make Application Great Again</h1>
-        <div class="btn_actions_personne">
-          <div class="btn_actions_delete" title="Supprimer la personne">
-            <router-link to="/dPersonne">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="navigation">
-        <div class="nav_menu_crud">
-          <nav class="navla">
-            <ul class="nav">
-              <li class="menu_prhpeofc">
-                <a href="/cPersonne">Personne</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cReseau"> Reseaux</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cHobbie">Hobbies</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cPoste">Poste</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cExperiencePro">Expériences Pro</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cOutil">Outils</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cFormation">Formations</a>
-              </li>
-              <li class="menu_prhpeofc cv">
-                <a href="/admin">See Your CV</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
     </header>
     <main class="app-main">
@@ -86,7 +47,11 @@
                   </div>
                   <div class="form">
                     <label class="form_lab" for="poste">Poste :</label>
-                    <input type="text" v-model="personne.poste" required />
+                    <input
+                      type="text"
+                      v-model="personne.qualification"
+                      required
+                    />
                   </div>
                   <div class="form">
                     <label class="form_lab" for="adresse">Adresse :</label>
@@ -186,14 +151,14 @@ import app from "@/services/app";
 
 export default {
   name: "UpdatePersonne",
-  date() {
+  data() {
     return {
       personne: {
         id: 0,
         nom: null,
         prenom: null,
         departement: null,
-        cp: 0,
+        cp: null,
         ville: null,
         adresse: null,
         mail: null,
@@ -205,11 +170,9 @@ export default {
     };
   },
   created() {
-    console.log(this.personne.id);
-    // récupération id personne via la route
-    this.personne.id = this.$route.params.id;
-    console.log(this.personne.id);
-    // Objet FormData pour passage des paramètres
+    // get id reseau via route
+    this.personne.id = 1;
+    // Object FormData to set parameters
     let params = new FormData();
     params.append("id", this.personne.id);
     app
@@ -221,26 +184,27 @@ export default {
   },
   methods: {
     submit: function() {
-      // Objet FormData pour passage des paramètres
+      // Object FormData to set parameters
       let params = new FormData();
       params.append("id", this.personne.id);
       params.append("nom", this.personne.nom);
       params.append("prenom", this.personne.prenom);
       params.append("departement", this.personne.departement);
       params.append("cp", this.personne.cp);
-      params.append("adresse", this.personne.adresse);
       params.append("ville", this.personne.ville);
+      params.append("adresse", this.personne.adresse);
       params.append("mail", this.personne.mail);
       params.append("telephone", this.personne.telephone);
       params.append("permis", this.personne.permis);
       params.append("voiture", this.personne.voiture);
       params.append("qualification", this.personne.qualification);
-      // Appel du service Ajax
+
+      // Call Ajax service
       app
         .maj("updatePersonne", params)
         .then(promise => {
           this.personne = promise;
-          // Redirection sur la page admin
+          // Redirect to admin page
           this.$router.push("/admin");
         })
         .catch(error => console.log(error));

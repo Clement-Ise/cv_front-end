@@ -7,50 +7,6 @@
           alt="polices-gothiques"
         />
         <h1>| Curriculum Vitae - Make Application Great Again</h1>
-        <div class="btn_actions_poste">
-          <div class="btn_actions_add" title="Ajouter le poste">
-            <router-link to="/createPoste">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div class="btn_actions_delete" title="Supprimer le poste">
-            <router-link to="/deletePoste">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="navigation">
-        <div class="nav_menu_crud">
-          <nav class="navla">
-            <ul class="nav">
-              <li class="menu_prhpeofc">
-                <a href="/cPersonne">Personne</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cReseau"> Reseaux</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cHobbie">Hobbies</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cPoste">Poste</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cExperiencePro">Expériences Pro</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cOutil">Outils</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/cFormation">Formations</a>
-              </li>
-              <li class="menu_prhpeofc cv">
-                <a href="/admin">See Your CV</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
     </header>
     <main class="app-main">
@@ -125,7 +81,7 @@
       </div>
     </main>
     <footer class="app-footer">
-      <p class="footer_cop">© Clément ISELIN <span id="year"> </span></p>
+      <p class="footer_cop">Clément ISELIN &copy; 2021</p>
     </footer>
   </div>
 </template>

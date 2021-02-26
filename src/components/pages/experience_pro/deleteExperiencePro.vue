@@ -7,56 +7,6 @@
           alt="polices-gothiques"
         />
         <h1>| Curriculum Vitae - Make Application Great Again</h1>
-        <div class="btn_actions_experiencePro">
-          <div
-            class="btn_actions_add"
-            title="Ajouter les experiences de la personne"
-          >
-            <router-link to="/createExperiencePro">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div
-            class="btn_actions_update"
-            title="Modifier les experiences de la personne"
-          >
-            <router-link to="/updateExperiencePro">
-              <i class="fa fa-edit fa-lg faPave"></i>
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="navigation">
-        <div class="nav_menu_crud">
-          <nav class="navla">
-            <ul class="nav">
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Personne">Personne</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Reseaux"> Reseaux</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Hobbies">Hobbies</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Poste">Poste</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Experience_pro">Expériences Pro</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Outils">Outils</a>
-              </li>
-              <li class="menu_prhpeofc">
-                <a href="/index.html#Formations">Formations</a>
-              </li>
-              <li class="menu_prhpeofc cv">
-                <a href="../index.html">See Your CV</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
     </header>
     <main class="app-main">
@@ -65,82 +15,91 @@
           <div class="media">
             <div class="media_body">
               <h2 class="media_title">
-                Supprimer les informations concernant votre expérience
-                professionnelle
+                Êtes-vous sur de vouloir supprimer cette expérience ?
               </h2>
-              <div class="reseau">
-                <form class="reseau_delete" action="#" method="post">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="delete"
-                      name="deleteChoice1"
-                      checked
-                    />
-                  </div>
-                  <div>
-                    <ul>
-                      <li class="form">Intitulé du poste : Développeur Web</li>
-                      <li class="form">Nom de l'entreprise : SAS exmple</li>
-                      <li class="form">Date de début : X/XX/XXXX</li>
-                      <li class="form">Date de fin : X/XX/XXXX</li>
-                    </ul>
-                    <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Praesentium consequatur totam ipsam id molestias assumenda
-                      similique eum dolorum? Optio, corrupti.
-                    </p>
-                  </div>
-                  <div class="col-5">
-                    <img
-                      src="#"
-                      id="previewImage"
-                      class="img-responsive"
-                      alt="image du Réseau"
-                    />
-                  </div>
-                </form>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="587.003"
-                  height="3"
-                  viewBox="0 0 587.003 3"
+              <div>
+                <form
+                  class="media_formulaire"
+                  method="POST"
+                  @submit.prevent="submit"
                 >
-                  <line
-                    id="Ligne_20"
-                    data-name="Ligne 20"
-                    x2="587"
-                    y2="2"
-                    transform="translate(0.002 0.5)"
-                    fill="none"
-                    stroke="#707070"
-                    stroke-width="1"
-                  />
-                </svg>
-                <div>
-                  <input
-                    class="favorite1 styled1"
-                    type="button"
-                    value="Annuler"
-                  />
-                  <input
-                    class="favorite1 styled1"
-                    type="button"
-                    value="Supprimer la selection"
-                  />
-                </div>
-                <div class="delete_popup_res">
-                  <h2 class="delete_title">
-                    Êtes-vous sur de vouloir supprimer la selection ?
-                  </h2>
-                  <a href="../index.html">
+                  <div class="form">
+                    <label class="form_lab" for="nom"
+                      >Intitulé du poste :
+                    </label>
                     <input
-                      class="favorite1 styled1"
-                      type="submit"
-                      value="Supprimer définitivement"
+                      type="text"
+                      name="nom"
+                      placeholder="Conducteur"
+                      v-model="experience.nom"
+                      required
                     />
-                  </a>
-                </div>
+                    <label class="form_lab" for="entreprise"
+                      >Nom de l'entreprise:</label
+                    >
+                    <input
+                      type="text"
+                      name="entreprise"
+                      placeholder="SAS exmple"
+                      v-model="experience.entreprise"
+                      required
+                    />
+                  </div>
+                  <div class="form">
+                    <label class="form_lab" for="activite"
+                      >Activite réalisé:</label
+                    >
+                    <textarea
+                      name="activite"
+                      placeholder="Conduite...."
+                      v-model="experience.activite"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="form">
+                    <label class="form_lab" for="date_début"
+                      >Date de début :</label
+                    >
+                    <input
+                      type="date"
+                      name="date_début"
+                      v-model="experience.periode_deb"
+                      required
+                    />
+                    <label class="form_lab" for="l_name">Date de fin :</label>
+                    <input
+                      type="date"
+                      name="date_fin"
+                      v-model="experience.periode_fin"
+                      required
+                    />
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="587.003"
+                    height="3"
+                    viewBox="0 0 587.003 3"
+                  >
+                    <line
+                      id="Ligne_20"
+                      data-name="Ligne 20"
+                      x2="587"
+                      y2="2"
+                      transform="translate(0.002 0.5)"
+                      fill="none"
+                      stroke="#707070"
+                      stroke-width="1"
+                    />
+                  </svg>
+                  <fieldset>
+                    <button class="favorite1 styled1" type="submit">
+                      Annuler
+                    </button>
+                    <button class="favorite1 styled1" type="submit">
+                      Supprimer la selection
+                    </button>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
@@ -148,11 +107,61 @@
       </div>
     </main>
     <footer class="app-footer">
-      <p class="footer_cop">© Clément ISELIN <span id="year"> </span></p>
+      <p class="footer_cop">© Clément ISELIN &copy; 2021</p>
     </footer>
   </div>
 </template>
 <script>
-export default {};
+import app from "@/services/app";
+
+export default {
+  name: "DeleteExperiencePro",
+  data() {
+    return {
+      experience: {
+        id: 0,
+        nom: null,
+        entreprise: null,
+        activite: null,
+        periode_deb: null,
+        periode_fin: null
+      }
+    };
+  },
+  created() {
+    // get id experience via route
+    this.experience.id = this.$route.params.id;
+    // Object FormData to set parameters
+    let params = new FormData();
+    params.append("id", this.experience.id);
+    app
+      .get("getExperiencePro", params)
+      .then(promise => {
+        this.experience = promise;
+      })
+      .catch(error => console.log(error));
+  },
+  methods: {
+    submit: function() {
+      // Object FormData to set parameters
+      let params = new FormData();
+      params.append("id", this.experience.id);
+      params.append("nom", this.experience.nom);
+      params.append("entreprise", this.experience.entreprise);
+      params.append("activite", this.experience.activite);
+      params.append("periode_deb", this.experience.periode_deb);
+      params.append("periode_fin", this.experience.periode_fin);
+      // Call Ajax service
+      app
+        .maj("deleteExperiencePro", params)
+        .then(promise => {
+          this.experience = promise;
+          // Redirect to admin page
+          this.$router.push("/admin");
+        })
+        .catch(error => console.log(error));
+    }
+  }
+};
 </script>
 <style scoped></style>

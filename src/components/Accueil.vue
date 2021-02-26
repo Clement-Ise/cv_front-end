@@ -190,11 +190,7 @@
             <ul id="listeForma"
               v-for="formation in liste.lesFormations"
               :key="formation.id">
-              <li>{{formation.annee}}</li>
-              <li class="separator">-</li>
-              <li>{{formation.etablissement}}</li>
-              <li class="separator">|</li>
-              <li>{{formation.nom}}</li>
+              <li>{{formation.annee}} - {{formation.etablissement}} | {{formation.nom}}</li>
             </ul>
           </div>
         </footer>

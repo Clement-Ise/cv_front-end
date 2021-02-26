@@ -7,44 +7,6 @@
           alt="polices-gothiques"
         />
         <h1>| Curriculum Vitae - Make Application Great Again</h1>
-        <div class="btn_actions_footer">
-          <div
-            class="btn_actions_add"
-            title="Ajouter la formation de la personne"
-          >
-            <router-link to="/createFormation">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div
-            class="btn_actions_update"
-            title="Modifier la formation de la personne"
-          >
-            <router-link to="/updateFormation">
-              <i class="fa fa-edit fa-lg faPave"></i>
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="navigation">
-        <div class="nav_menu_crud">
-          <nav class="navla">
-            <ul class="nav">
-              <li class="menu_prhpeofc"><a href="">Personne</a></li>
-              <li class="menu_prhpeofc"><a href="#">Reseaux</a></li>
-              <li class="menu_prhpeofc"><a href="#">Hobbies</a></li>
-              <li class="menu_prhpeofc"><a href="#">Poste</a></li>
-              <li class="menu_prhpeofc">
-                <a href="#">Expériences Pro</a>
-              </li>
-              <li class="menu_prhpeofc"><a href="#">Outils</a></li>
-              <li class="menu_prhpeofc"><a href="#">Formations</a></li>
-              <li class="menu_prhpeofc cv">
-                <a href="../index.html">See Your CV</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
     </header>
     <main class="app-main">
@@ -53,71 +15,93 @@
           <div class="media">
             <div class="media_body">
               <h2 class="media_title">
-                Supprimer les informations concernant la formation
+                Êtes-vous sur de vouloir supprimer la formation ?
               </h2>
-              <div class="reseau">
-                <form class="reseau_delete" action="#" method="post">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="delete"
-                      name="deleteChoice1"
-                      checked
-                    />
-                  </div>
-                  <div>
-                    <ul>
-                      <li class="form">Année : XXXX</li>
-                      <li class="form">Intitulé de la formation : Bac STAV</li>
-                      <li class="form">
-                        Nom de l'établissement : Lycée exemple
-                      </li>
-                      <li class="form">Ville : Paris</li>
-                      <li class="form">Département : Ile de france</li>
-                    </ul>
-                  </div>
-                </form>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="587.003"
-                  height="3"
-                  viewBox="0 0 587.003 3"
+              <div>
+                <form
+                  class="media_formulaire"
+                  method="POST"
+                  @submit.prevent="submit"
                 >
-                  <line
-                    id="Ligne_20"
-                    data-name="Ligne 20"
-                    x2="587"
-                    y2="2"
-                    transform="translate(0.002 0.5)"
-                    fill="none"
-                    stroke="#707070"
-                    stroke-width="1"
-                  />
-                </svg>
-                <div>
-                  <input
-                    class="favorite1 styled1"
-                    type="button"
-                    value="Annuler"
-                  />
-                  <input
-                    class="favorite1 styled1"
-                    type="button"
-                    value="Supprimer la selection"
-                  />
-                </div>
-                <div class="delete_popup_res">
-                  <h2 class="delete_title">
-                    Êtes-vous sur de vouloir supprimer la selection ?
-                  </h2>
-                  <a href="../index.html">
+                  <div class="form">
+                    <label class="form_lab" for="annee">Année : </label>
                     <input
-                      class="favorite1 styled1"
-                      type="submit"
-                      value="Supprimer définitivement"
+                      type="number"
+                      min="1900"
+                      name="annee"
+                      placeholder="XXXX"
+                      v-model="formation.annee"
+                      required
                     />
-                  </a>
-                </div>
+                    <label class="form_lab" for="nom"
+                      >Intitulé de la formation :
+                    </label>
+                    <input
+                      type="text"
+                      name="nom"
+                      placeholder="Baccalauréat"
+                      v-model="formation.nom"
+                      required
+                    />
+                  </div>
+                  <div class="form">
+                    <label class="form_lab" for="etablissement"
+                      >Nom de l'établissement</label
+                    >
+                    <input
+                      type="text"
+                      name="etablissement"
+                      placeholder="Lycée exemple"
+                      v-model="formation.etablissement"
+                      required
+                    />
+                  </div>
+                  <div class="form">
+                    <label class="form_lab" for="ville">Ville :</label>
+                    <input
+                      type="text"
+                      name="ville"
+                      placeholder="Paris"
+                      v-model="formation.ville"
+                      required
+                    />
+                    <label class="form_lab" for="departement"
+                      >Département :</label
+                    >
+                    <input
+                      type="text"
+                      name="departement"
+                      placeholder="XXXXXXX"
+                      v-model="formation.departement"
+                      required
+                    />
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="587.003"
+                    height="3"
+                    viewBox="0 0 587.003 3"
+                  >
+                    <line
+                      id="Ligne_20"
+                      data-name="Ligne 20"
+                      x2="587"
+                      y2="2"
+                      transform="translate(0.002 0.5)"
+                      fill="none"
+                      stroke="#707070"
+                      stroke-width="1"
+                    />
+                  </svg>
+                  <fieldset>
+                    <button class="favorite1 styled1" type="submit">
+                      Annuler
+                    </button>
+                    <button class="favorite1 styled1" type="submit">
+                      Supprimer la selection
+                    </button>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
@@ -125,11 +109,61 @@
       </div>
     </main>
     <footer class="app-footer">
-      <p class="footer_cop">© Clément ISELIN <span id="year"> </span></p>
+      <p class="footer_cop">Clément ISELIN &copy; 2021</p>
     </footer>
   </div>
 </template>
 <script>
-export default {};
+import app from "@/services/app";
+
+export default {
+  name: "DeleteFormation",
+  data() {
+    return {
+      formation: {
+        id: 0,
+        nom: null,
+        etablissement: null,
+        ville: null,
+        departement: null,
+        annee: 0
+      }
+    };
+  },
+  created() {
+    // get id formation via route
+    this.formation.id = this.$route.params.id;
+    // Object FormData to set parameters
+    let params = new FormData();
+    params.append("id", this.formation.id);
+    app
+      .get("getFormation", params)
+      .then(promise => {
+        this.formation = promise;
+      })
+      .catch(error => console.log(error));
+  },
+  methods: {
+    submit: function() {
+      // Object FormData to set parameters
+      let params = new FormData();
+      params.append("id", this.formation.id);
+      params.append("nom", this.formation.nom);
+      params.append("etablissement", this.formation.etablissement);
+      params.append("ville", this.formation.ville);
+      params.append("departement", this.formation.departement);
+      params.append("annee", this.formation.annee);
+      // Call Ajax service
+      app
+        .maj("deleteFormation", params)
+        .then(promise => {
+          this.formation = promise;
+          // Redirect to admin page
+          this.$router.push("/admin");
+        })
+        .catch(error => console.log(error));
+    }
+  }
+};
 </script>
 <style scoped></style>

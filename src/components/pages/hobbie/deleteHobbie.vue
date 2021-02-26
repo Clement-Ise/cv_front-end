@@ -7,38 +7,6 @@
           alt="polices-gothiques"
         />
         <h1>| Curriculum Vitae - Make Application Great Again</h1>
-        <div class="btn_actions_hobbie">
-          <div class="btn_actions_add" title="Ajouter le hobbie">
-            <router-link to="/createHobbie">
-              <i class="fa fa-times fa-lg faPave"></i>
-            </router-link>
-          </div>
-          <div class="btn_actions_update" title="Modifier le hobbie">
-            <router-link to="/updateHobbie">
-              <i class="fa fa-edit fa-lg faPave"></i>
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="navigation">
-        <div class="nav_menu_crud">
-          <nav class="navla">
-            <ul class="nav">
-              <li class="menu_prhpeofc"><a href="">Personne</a></li>
-              <li class="menu_prhpeofc"><a href="#">Reseaux</a></li>
-              <li class="menu_prhpeofc"><a href="#">Hobbies</a></li>
-              <li class="menu_prhpeofc"><a href="#">Poste</a></li>
-              <li class="menu_prhpeofc">
-                <a href="#">Expériences Pro</a>
-              </li>
-              <li class="menu_prhpeofc"><a href="#">Outils</a></li>
-              <li class="menu_prhpeofc"><a href="#">Formations</a></li>
-              <li class="menu_prhpeofc cv">
-                <a href="../index.html">See Your CV</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
     </header>
     <main class="app-main">
@@ -46,22 +14,29 @@
         <section class="card card-marketing">
           <div class="media">
             <div class="media_body">
-              <h2 class="media_title">Supprimer vos hobbies</h2>
+              <h2 class="media_title">
+                Êtes-vous sur de vouloir supprimer le hobbie ?
+              </h2>
               <div>
-                <div>
-                  <input type="checkbox" id="delete" name="deleteChoice1" />
-                </div>
-                <form class="media_formulaire" action="#" method="post">
-                  <div>
-                    <p>Nom : Pêche</p>
-                  </div>
-                  <div>
-                    <p>
-                      Explication : Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Atque ullam vitae at animi eius soluta
-                      sit ipsam reiciendis quis doloribus, quas ut eum amet
-                      numquam quisquam error repellendus harum fugiat.
-                    </p>
+                <form
+                  class="media_formulaire"
+                  method="POST"
+                  @submit.prevent="submit"
+                >
+                  <div class="form">
+                    <label class="form_lab" for="nom">Nom :</label>
+                    <input
+                      type="text"
+                      name="nom"
+                      v-model="hobbie.nom"
+                      required
+                    />
+                    <label for="msg">Explication :</label>
+                    <textarea
+                      name="msg"
+                      v-model="hobbie.info"
+                      required
+                    ></textarea>
                   </div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -80,30 +55,14 @@
                       stroke-width="1"
                     />
                   </svg>
-                  <div>
-                    <input
-                      class="favorite1 styled1"
-                      type="button"
-                      value="Annuler"
-                    />
-                    <input
-                      class="favorite1 styled1"
-                      type="button"
-                      value="Supprimer la selection"
-                    />
-                  </div>
-                  <div class="delete_popup_res">
-                    <h2 class="delete_title">
-                      Êtes-vous sur de vouloir supprimer la personne ?
-                    </h2>
-                    <a href="../index.html">
-                      <input
-                        class="favorite1 styled1"
-                        type="submit"
-                        value="Supprimer définitivement"
-                      />
-                    </a>
-                  </div>
+                  <fieldset>
+                    <button class="favorite1 styled1" type="submit">
+                      Annuler
+                    </button>
+                    <button class="favorite1 styled1" type="submit">
+                      Supprimer la selection
+                    </button>
+                  </fieldset>
                 </form>
               </div>
             </div>
@@ -112,11 +71,55 @@
       </div>
     </main>
     <footer class="app-footer">
-      <p class="footer_cop">© Clément ISELIN <span id="year"> </span></p>
+      <p class="footer_cop">Clément ISELIN&copy; 2021</p>
     </footer>
   </div>
 </template>
 <script>
-export default {};
+import app from "@/services/app";
+
+export default {
+  name: "DeleteHobbie",
+  data() {
+    return {
+      hobbie: {
+        id: 0,
+        nom: null,
+        info: null
+      }
+    };
+  },
+  created() {
+    // get id hobbie via route
+    this.hobbie.id = this.$route.params.id;
+    // Object FormData to set parameters
+    let params = new FormData();
+    params.append("id", this.hobbie.id);
+    app
+      .get("getHobbie", params)
+      .then(promise => {
+        this.hobbie = promise;
+      })
+      .catch(error => console.log(error));
+  },
+  methods: {
+    submit: function() {
+      // Object FormData to set parameters
+      let params = new FormData();
+      params.append("id", this.hobbie.id);
+      params.append("nom", this.hobbie.nom);
+      params.append("info", this.hobbie.info);
+      // Call Ajax service
+      app
+        .maj("deleteHobbie", params)
+        .then(promise => {
+          this.hobbie = promise;
+          // Redirect to admin page
+          this.$router.push("/admin");
+        })
+        .catch(error => console.log(error));
+    }
+  }
+};
 </script>
 <style scoped></style>
