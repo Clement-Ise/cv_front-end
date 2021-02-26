@@ -4,8 +4,11 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 
+//Bootstrap
+import "bootstrap/dist/css/bootstrap.css";
+
 //CSS
-import Css from "./assets/css/style.css";
+import "@/assets/css/style.css";
 
 Vue.config.productionTip = false;
 
